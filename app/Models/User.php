@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'ime',
+        'prezime',
+        'broj_indeksa',
         'email',
         'password',
+        'administrator',
+        'grupa_za_nastavu_id'
+
     ];
 
     /**
@@ -42,4 +47,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function rasporediNastave()
+    {
+        return $this->hasMany(RasporedNastave::class);
+    }
+
+    public function grupaZaNastavu()
+    {
+        return $this->belongsTo(GrupaZaNastavu::class);
+    }
+
+    public function evidencijePrisustva()
+    {
+        return $this->hasMany(EvidencijaPrisustva::class);
+    }
 }

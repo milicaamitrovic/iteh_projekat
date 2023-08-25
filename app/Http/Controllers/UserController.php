@@ -55,7 +55,7 @@ class UserController extends Controller
             'grupa_za_nastavu_id' => $request->grupa_za_nastavu_id,
          ]);
 
-         return response()->json(['Autoskola je dodata!', new UserResource($user)]);
+         return response()->json(['Korisnik je dodat!', new UserResource($user)]);
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
         if ($user) {
             return new UserResource($user);
         } else {
-            return response()->json(['message' => 'Korisnik nije pronađen.'], 404);
+            return response()->json('Korisnik nije pronađen.');
         }
     }
 
@@ -81,7 +81,7 @@ class UserController extends Controller
         if ($user) {
             return response()->json($user);
         } else {
-            return response()->json(['message' => 'Korisnik nije pronađen.'], 404);
+            return response()->json('Korisnik nije pronađen.');
         }
     }
 
@@ -138,7 +138,7 @@ class UserController extends Controller
             return response()->json(['Uspesno ste obrisali korisnika!', new UserResource($user)]);
         }
         else {
-            return response()->json('Autoskola koju zelite da obrisete ne postoji u bazi!');
+            return response()->json('Korisnik kog zelite da obrisete ne postoji u bazi!');
         } 
     }
 }

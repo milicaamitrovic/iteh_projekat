@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GrupaZaNastavuController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\RasporedNastaveController;
 
 
@@ -24,9 +25,19 @@ Route::resource('users', UserController::class);
 Route::resource('grupe', GrupaZaNastavuController::class);
 //Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
 Route::resource('rasporedi', RasporedNastaveController::class);
+Route::post('/login', [AuthController::class, 'login']);
 
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    Route::post('/logout',[AuthController::class,'logout']);
+});*/
+
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get('/profile', function(Request $request){
+        return auth()->user();
+    });
+   
+
+    Route::post('/logout', [AuthController::class, 'logout']);   
 });

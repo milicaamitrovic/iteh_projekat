@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\GrupaZaNastavu;
 
 class UserSeeder extends Seeder
 {
@@ -33,15 +34,18 @@ class UserSeeder extends Seeder
         //     'grupa_za_nastavu_id' => $grupa1->id,
         // ]);
 
-        // User::create([
-        //     'ime' => 'Anja',
-        //     'prezime' => 'Cirkovic',
-        //     'brojIndeksa' => '77/2019',
-        //     'email' => 'ac7719@fon.bg.ac.rs',
-        //     'password' => bcrypt('ac7719'),
-        //     'administrator' => false,
-        //     'grupa_za_nastavu_id' => $grupa2->id,
-        // ]);
+        $grupa= GrupaZaNastavu::create([
+            'naziv_grupe' => 'admin',
+        ]);
+         User::create([
+             'ime' => 'Anja',
+             'prezime' => 'Cirkovic',
+             'broj_indeksa' => '77/2019',
+             'email' => 'ac7719@fon.bg.ac.rs',
+             'password' => bcrypt('ac7719'),
+             'administrator' => false,
+             'grupa_za_nastavu_id' => $grupa->id,
+         ]);
 
         User::factory()->count(5)->create();
     }

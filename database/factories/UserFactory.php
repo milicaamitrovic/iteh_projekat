@@ -21,7 +21,8 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'administrator' => false,
             'remember_token' => Str::random(10),
-            'grupa_za_nastavu_id' => $this->faker->randomElement($grupaIds),
+           // 'grupa_za_nastavu_id' => $this->faker->randomElement($grupaIds),
+           'grupa_za_nastavu_id' => GrupaZaNastavu::factory()
         ];
     }
     

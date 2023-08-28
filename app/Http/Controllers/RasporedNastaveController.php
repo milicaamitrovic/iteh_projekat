@@ -111,4 +111,18 @@ class RasporedNastaveController extends Controller
             return response()->json('Raspored nastave koji zelite da obrisete ne postoji u bazi!');
         } 
     }
+
+    public function searchByNazivRasporeda(Request $request)
+    {
+        $nazivRasporeda = $request->input('naziv_rasporeda');
+
+        $raspored = RasporedNastave::where('naziv_rasporeda', $nazivRasporeda)->first();
+
+        if ($raspored) {
+            return response()->json($raspored);
+        } else {
+            return response()->json('Raspored nije pronađen.');
+        }
+    }
+    
 }

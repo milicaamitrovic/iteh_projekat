@@ -32,6 +32,6 @@ class StavkaRasporeda extends Model
 
     public function raspored()
     {
-        return $this->belongsTo(Raspored::class);
+        return $this->belongsTo(RasporedNastave::class);
     }
 }

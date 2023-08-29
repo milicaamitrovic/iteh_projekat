@@ -7,7 +7,7 @@ use App\Http\Controllers\GrupaZaNastavuController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\RasporedNastaveController;
 use App\Http\Controllers\RasporedStavkeRasporedaController;
-
+use App\Http\Controllers\EvidencijaPrisustvaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::resource('users', UserController::class);
     Route::resource('grupe', GrupaZaNastavuController::class);
     Route::resource('rasporedi', RasporedNastaveController::class);
+    Route::resource('evidencije', EvidencijaPrisustvaController::class);
 
     Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
 

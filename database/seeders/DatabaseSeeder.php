@@ -11,6 +11,7 @@ use Database\Seeders\DanSeeder;
 use Database\Seeders\VremenskiIntervalSeeder;
 use Database\Seeders\RasporedNastaveSeeder;
 use Database\Seeders\StavkaRasporedaSeeder;
+use Database\Seeders\EvidencijaPrisustvaSeeder;
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -33,6 +34,8 @@ class DatabaseSeeder extends Seeder
         $raspored->run();
         $stavka_rasporeda = new StavkaRasporedaSeeder();
         $stavka_rasporeda->run();
+        $evidencija = new EvidencijaPrisustvaSeeder();
+        $evidencija->run();
 
     }
 }

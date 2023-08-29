@@ -11,7 +11,7 @@ class EvidencijaPrisustva extends Model
 
     protected $fillable = [
         'korisnik_id',
-        'prisustvo'
+        'datum'
     ];
 
     public function student()

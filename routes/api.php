@@ -9,50 +9,37 @@ use App\Http\Controllers\RasporedNastaveController;
 use App\Http\Controllers\RasporedStavkeRasporedaController;
 use App\Http\Controllers\EvidencijaPrisustvaController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-//Route::get('/users', [UserController::class, 'index']);
-//Route::get('/users/{id}', [UserController::class, 'show']);
-//Route::resource('users', UserController::class);
-//Route::resource('grupe', GrupaZaNastavuController::class);
-//Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
-//Route::resource('rasporedi', RasporedNastaveController::class);
-//Route::post('/login', [AuthController::class, 'login']);
-//Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
-
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-    Route::post('/logout',[AuthController::class,'logout']);
-});*/
-
-
-//Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
 
 Route::post('/login', [AuthController::class, 'login']);
+
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){
         return auth()->user();
     });
 
-    Route::resource('users', UserController::class);
-    Route::resource('grupe', GrupaZaNastavuController::class);
-    Route::resource('rasporedi', RasporedNastaveController::class);
-    Route::resource('evidencije', EvidencijaPrisustvaController::class);
+    Route::post('/evidencije', [EvidencijaPrisustvaController::class, 'store']);
 
     Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
 
+    Route::post('/logout', [AuthController::class, 'logout']);   
+});
+
+
+Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){  
+
+    Route::get('/check', function(){
+        return response()->json(['message'=>'Administrator je ulogovan.'],200);
+    });
+
+    Route::resource('users', UserController::class);
+    Route::resource('grupe', GrupaZaNastavuController::class);
+    Route::resource('rasporedi', RasporedNastaveController::class);
+
+    Route::get('/evidencije', [EvidencijaPrisustvaController::class, 'index']);
+    Route::get('/evidencije/{id}', [EvidencijaPrisustvaController::class, 'show']);
+
     Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
     Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
-
-    Route::post('/logout', [AuthController::class, 'logout']);   
+ 
 });

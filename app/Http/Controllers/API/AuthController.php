@@ -11,15 +11,31 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+     {
         if(!Auth::attempt($request->only('email','password'))){
             return response()
             ->json(['message'=>'Pogresni kredencijali za logovanje.'],401);
         }
         $user=User::where('email',$request['email'])->firstOrFail();
-        $token=$user->createToken('auth_token')->plainTextToken;
-        return response()
-        ->json(['message'=>'Zdravo, '.$user->ime.', uspesno ste se prijavili!','access_token'=>$token,'token_type'=>'Bearer', ]);
+       
+            if($user->administrator==1){
+                $role='administrator';
+                $token = $user->createToken($user->email.'_AdminToken',['server:administrator'])->plainTextToken;
+            }else{
+                $role='korisnik';
+                $token = $user->createToken($user->email.'_Token',[''])->plainTextToken;
+            }
+        
+
+            $response = [
+                'Ime'=>$user->ime.' '.$user->prezime,
+                'Token' => $token,
+                'Uloga'=> $role
+            ];
+    
+            return response()->json($response);
+
     }
 
     public function logout(){

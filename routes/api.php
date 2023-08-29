@@ -8,10 +8,15 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\RasporedNastaveController;
 use App\Http\Controllers\RasporedStavkeRasporedaController;
 use App\Http\Controllers\EvidencijaPrisustvaController;
-
+use App\Http\Controllers\DanController;
+use App\Http\Controllers\PredmetController;
+use App\Http\Controllers\VremenskiIntervalController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::resource('dan', DanController::class);
+Route::resource('predmet', PredmetController::class);
+Route::resource('vreme', VremenskiIntervalController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){

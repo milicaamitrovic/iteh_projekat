@@ -6,6 +6,8 @@ use App\Models\RasporedNastave;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\RasporedNastaveResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RasporedNastaveController extends Controller
 {
@@ -15,7 +17,7 @@ class RasporedNastaveController extends Controller
     public function index()
     {
         $rasporedNastave= RasporedNastave::all();
-        return $rasporedNastave;
+        return RasporedNastaveResource::collection($rasporedNastave);
     }
 
     /**
@@ -32,11 +34,10 @@ class RasporedNastaveController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-        'naziv_rasporeda' => 'required|string|max:255',
-        'datum_od' => 'required|date',
-        'datum_do' => 'required|date|after:datum_od',
-        'grupa_za_nastavu_id' => 'required|integer',
-        'korisnik_id' => 'required|integer'
+            'naziv_rasporeda' => 'required|string|max:255',
+            'datum_od' => 'required|date',
+            'datum_do' => 'required|date|after:datum_od',
+            'grupa_za_nastavu_id' => 'required|integer'
         ]);
 
         if ($validator->fails()) {
@@ -44,24 +45,35 @@ class RasporedNastaveController extends Controller
         }
 
         $rasporedNastave = RasporedNastave::create([
-        'naziv_rasporeda' => $request->naziv_rasporeda,
-        'datum_od' => $request->datum_od,
-        'datum_do' => $request->datum_do,
-        'grupa_za_nastavu_id' => $request->grupa_za_nastavu_id,
-        'korisnik_id' => $request->korsinik_id,
-         ]);
+            'naziv_rasporeda' => $request->naziv_rasporeda,
+            'datum_od' => $request->datum_od,
+            'datum_do' => $request->datum_do,
+            'grupa_za_nastavu_id' => $request->grupa_za_nastavu_id,
+            'korisnik_id' => Auth::user()->id
+        ]);
 
-         return response()->json(['Raspored nastave je dodat!', new RasporedNastaveResource($rasporedNastave)]);
+        return response()->json(['Raspored nastave je dodat!', new RasporedNastaveResource($rasporedNastave)]);
     }
     
 
     /**
      * Display the specified resource.
      */
-    public function show(RasporedNastave $rasporedNastave)
+    public function show($id)
     {
-        return new RasporedNastaveResource($rasporedNastave);
-    }
+        $raspored = RasporedNastave::find($id);
+
+        if ($raspored) {
+
+           return new RasporedNastaveResource($raspored);
+
+        } else {
+
+           return response()->json('Raspored sa trazenim id-jem ne postoji.');
+
+        }
+   }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -74,26 +86,31 @@ class RasporedNastaveController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RasporedNastave $rasporedNastave)
+    public function update(Request $request, $id)
     {
+        $raspored = RasporedNastave::find($id);
+
+        if (is_null($raspored)) {
+
+           return response()->json('Raspored koji zelite da azurirate ne postoji!');
+        }
+
         $validator = Validator::make($request->all(), [
             'naziv_rasporeda' => 'required|string|max:255',
             'datum_od' => 'required|date',
             'datum_do' => 'required|date|after:datum_od',
-            'grupa_za_nastavu_id' => 'required|integer',
-            'korisnik_id' => 'required|integer'
-            ]);
+            'grupa_za_nastavu_id' => 'required|integer'
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['Greska pri azuriranju rasporeda za nastavu!', $validator->errors()]);
         }
 
-        $rasporedNastave->naziv_rasporeda = $request->naziv_rasporeda;
+        $raspored->naziv_rasporeda = $request->naziv_rasporeda;
         
+        $raspored->save();
 
-        $rasporedNastave->save();
-
-        return response()->json(['Raspored nastave je azuriran!', new RasporedNastaveResource($rasporedNastave)]);
+        return response()->json(['Raspored nastave je azuriran!', new RasporedNastaveResource($raspored)]);
     }
     
 
@@ -108,7 +125,7 @@ class RasporedNastaveController extends Controller
             return response()->json(['Uspesno ste obrisali raspored nastave!', new RasporedNastaveResource($rasporedNastave)]);
         }
         else {
-            return response()->json('Raspored nastave koji zelite da obrisete ne postoji u bazi!');
+            return response()->json('Raspored nastave koji zelite da obrisete ne postoji!');
         } 
     }
 
@@ -121,7 +138,7 @@ class RasporedNastaveController extends Controller
         if ($raspored) {
             return response()->json($raspored);
         } else {
-            return response()->json('Raspored nije pronađen.');
+            return response()->json('Raspored sa ovim nazivom ne postoji.');
         }
     }
     

@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class StavkaRasporeda extends Model
 {
+
     use HasFactory;
+    //protected $primaryKey=['id','raspored_id'];
+    //public $incrementing= false;
     protected $fillable = [
         'raspored_id',
         'dan_id',

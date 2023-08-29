@@ -12,12 +12,12 @@ class RasporedNastaveResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id'  => $this->resource->id,
-        'naziv_rasporeda' => $this->resource->naziv_rasporeda,
-        'datum_od' => $this->resource->datum_od,
-        'datum_do' => $this->resource->datum_do,
-        'grupa_za_nastavu_id' => new GrupaZaNastavuResource($this->resource->grupa_za_nastavu_id),
-        'korisnik_id' => new UserResource($this->resource->korisnik_id)
+        'ID'  => $this->resource->id,
+        'Naziv rasporeda' => $this->resource->naziv_rasporeda,
+        'Datum od' => $this->resource->datum_od,
+        'Datum do' => $this->resource->datum_do,
+        'ID grupe za nastavu' => new GrupaZaNastavuResource($this->resource->grupa_za_nastavu_id),
+        'ID korisnika' => new UserResource($this->resource->korisnik_id)
         ];
     }
 }

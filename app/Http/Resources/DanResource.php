@@ -17,7 +17,6 @@ class DanResource extends JsonResource
     {
         return [
             'Dan' => $this->resource->naziv_dana
-            
-            ];
+        ];
     }
 }

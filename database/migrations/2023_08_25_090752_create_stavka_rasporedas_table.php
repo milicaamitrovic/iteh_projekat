@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stavka_rasporedas', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->id();
             $table->unsignedBigInteger('raspored_id');
             $table->foreign('raspored_id')->references('id')->on('raspored_nastaves');
             $table->unsignedBigInteger('dan_id');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('predmet_id')->references('id')->on('predmets');
             $table->timestamps();
 
-            $table->primary(['id', 'raspored_id']);
+           // $table->primary(['id', 'raspored_id']);
         });
     }
 

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RasporedNastave extends Model
 {
     use HasFactory;
-
+    //protected $primaryKey=['id'];
+    //public $incrementing= false;
     protected $fillable = [
         'naziv_rasporeda',
         'datum_od',

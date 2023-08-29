@@ -15,7 +15,7 @@ class GrupaZaNastavuController extends Controller
     public function index()
     {
         $grupe = GrupaZaNastavu::all();
-        return $grupe;
+        return GrupaZaNastavuResource::collection($grupe);
     }
 
     /**
@@ -39,19 +39,29 @@ class GrupaZaNastavuController extends Controller
             return response()->json(['Greska pri validaciji!', $validator->errors()]);
         }
 
-        $grupaZaNastavu = GrupaZaNastavu::create([
+        $grupa_za_nastavu = GrupaZaNastavu::create([
             'naziv_grupe' => $request->naziv_grupe
-         ]);
+        ]);
 
-         return response()->json(['Grupa za nastavu je dodata!', new GrupaZaNastavuResource($grupaZaNastavu)]);
+        return response()->json(['Grupa za nastavu je dodata!', new GrupaZaNastavuResource($grupa_za_nastavu)]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(GrupaZaNastavu $grupaZaNastavu)
+    public function show($id)
     {
-        return new GrupaZaNastavuResource($grupaZaNastavu);
+        $grupa_za_nastavu = GrupaZaNastavu::find($id);
+
+        if ($grupa_za_nastavu) {
+
+           return new GrupaZaNastavuResource($grupa_za_nastavu);
+
+        } else {
+
+           return response()->json('Grupa za nastavu sa trazenim id-jem ne postoji.');
+
+        }
     }
 
     /**
@@ -65,8 +75,16 @@ class GrupaZaNastavuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GrupaZaNastavu $grupaZaNastavu)
+    public function update(Request $request, $id)
     {
+        $grupa_za_nastavu = GrupaZaNastavu::find($id);
+
+        if (is_null($grupa_za_nastavu)) {
+
+           return response()->json('Grupa za nastavu koju zelite da azurirate ne postoji!');
+        }
+
+
         $validator = Validator::make($request->all(), [
             'naziv_grupe' => 'required|string|max:255'
         ]);
@@ -75,12 +93,12 @@ class GrupaZaNastavuController extends Controller
             return response()->json(['Greska pri azuriranju grupe za nastavu!', $validator->errors()]);
         }
 
-        $grupaZaNastavu->naziv_grupe = $request->naziv_grupe;
+        $grupa_za_nastavu->naziv_grupe = $request->naziv_grupe;
         
 
-        $grupaZaNastavu->save();
+        $grupa_za_nastavu->save();
 
-        return response()->json(['Grupa za nastavu je azurirana!', new GrupaZaNastavuResource($grupaZaNastavu)]);
+        return response()->json(['Grupa za nastavu je azurirana!', new GrupaZaNastavuResource($grupa_za_nastavu)]);
     }
 
     /**
@@ -88,13 +106,13 @@ class GrupaZaNastavuController extends Controller
      */
     public function destroy($id)
     {
-        $grupaZaNastavu = GrupaZaNastavu::find($id);
-        if ($grupaZaNastavu) {
-            $grupaZaNastavu->delete();
-            return response()->json(['Uspesno ste obrisali grupu za nastavu!', new GrupaZaNastavuResource($grupaZaNastavu)]);
+        $grupa_za_nastavu = GrupaZaNastavu::find($id);
+        if ($grupa_za_nastavu) {
+            $grupa_za_nastavu->delete();
+            return response()->json(['Uspesno ste obrisali grupu za nastavu!', new GrupaZaNastavuResource($grupa_za_nastavu)]);
         }
         else {
-            return response()->json('Grupa za nastavu koju zelite da obrisete ne postoji u bazi!');
+            return response()->json('Grupa za nastavu koju zelite da obrisete ne postoji!');
         } 
     }
 }

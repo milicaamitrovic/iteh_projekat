@@ -16,12 +16,12 @@ class StavkaRasporedaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'raspored_nastave'  => new RasporedNastaveResource($this->resource->raspored_nastave),
+            'ID' => $this->resource->id,
+            'ID rasporeda nastave'  =>$this->resource ->raspored_id,
             'Dan' => new DanResource($this->resource->dan),
-            'vremenski_interval' => new VremenskiIntervalResource($this->resource->vremenskiInterval),
+            'Vreme' => new VremenskiIntervalResource($this->resource->vremenskiInterval),
             'Predmet' => new PredmetResource($this->resource->predmet),
-            
-            ];
+        ];
             
     }
 }

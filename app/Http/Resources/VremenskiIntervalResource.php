@@ -17,6 +17,6 @@ class VremenskiIntervalResource extends JsonResource
     {
         return [
             'Vreme'  => $this->resource->interval
-            ];
+        ];
     }
 }

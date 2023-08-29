@@ -19,11 +19,7 @@ class GrupaZaNastavuSeeder extends Seeder
         ]);
 
         GrupaZaNastavu::create([
-            'naziv_grupe' => 'Opsti menadzment',
-        ]);
-
-        GrupaZaNastavu::create([
-            'naziv_grupe' => 'Kvalitet',
+            'naziv_grupe' => 'MGMT',
         ]);
     }
 }

@@ -12,8 +12,8 @@ class GrupaZaNastavuResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->resource->id,
-            'naziv_grupe' => $this->resource->naziv_grupe,
+            'ID' => $this->resource->id,
+            'Naziv grupe' => $this->resource->naziv_grupe,
         ];
     }
 }

@@ -17,6 +17,6 @@ class PredmetResource extends JsonResource
     {
         return [
             'Predmet'  => $this->resource->naziv_predmeta
-            ];
+        ];
     }
 }

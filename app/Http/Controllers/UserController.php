@@ -53,9 +53,9 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'administrator' => $request->administrator,
             'grupa_za_nastavu_id' => $request->grupa_za_nastavu_id,
-         ]);
+        ]);
 
-         return response()->json(['Korisnik je dodat!', new UserResource($user)]);
+        return response()->json(['Korisnik je dodat!', new UserResource($user)]);
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
         if ($user) {
             return new UserResource($user);
         } else {
-            return response()->json('Korisnik nije pronađen.');
+            return response()->json('Korisnik sa trazenim id-jem ne postoji.');
         }
     }
 
@@ -81,7 +81,7 @@ class UserController extends Controller
         if ($user) {
             return response()->json($user);
         } else {
-            return response()->json('Korisnik nije pronađen.');
+            return response()->json('Korisnik sa trazenim brojem indeksa ne postoji.');
         }
     }
 
@@ -97,8 +97,14 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
+        if (is_null($user)) {
+
+           return response()->json('Korisnika koga zelite da azurirate ne postoji!');
+        }
         $validator = Validator::make($request->all(), [
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
@@ -138,7 +144,7 @@ class UserController extends Controller
             return response()->json(['Uspesno ste obrisali korisnika!', new UserResource($user)]);
         }
         else {
-            return response()->json('Korisnik kog zelite da obrisete ne postoji u bazi!');
+            return response()->json('Korisnik koga zelite da obrisete ne postoji!');
         } 
     }
 }

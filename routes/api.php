@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GrupaZaNastavuController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\RasporedNastaveController;
-use App\Http\Controllers\StavkaRasporedaController;
+use App\Http\Controllers\RasporedStavkeRasporedaController;
 
 
 /*
@@ -22,26 +22,36 @@ use App\Http\Controllers\StavkaRasporedaController;
 
 //Route::get('/users', [UserController::class, 'index']);
 //Route::get('/users/{id}', [UserController::class, 'show']);
-Route::resource('users', UserController::class);
-Route::resource('grupe', GrupaZaNastavuController::class);
-Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
-Route::resource('rasporedi', RasporedNastaveController::class);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
+//Route::resource('users', UserController::class);
+//Route::resource('grupe', GrupaZaNastavuController::class);
+//Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
+//Route::resource('rasporedi', RasporedNastaveController::class);
+//Route::post('/login', [AuthController::class, 'login']);
+//Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
     Route::post('/logout',[AuthController::class,'logout']);
 });*/
 
-Route::get('/stavke', [StavkaRasporedaController::class, 'index']);
-Route::get('/stavke/{id}', [StavkaRasporedaController::class, 'show']);
+
+//Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
+
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){
         return auth()->user();
     });
-   
+
+    Route::resource('users', UserController::class);
+    Route::resource('grupe', GrupaZaNastavuController::class);
+    Route::resource('rasporedi', RasporedNastaveController::class);
+
+    Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
+
+    Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
+    Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
 
     Route::post('/logout', [AuthController::class, 'logout']);   
 });

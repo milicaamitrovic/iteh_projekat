@@ -29,16 +29,6 @@ class DatabaseSeeder extends Seeder
         $predmet->run();
         $dan->run();
         $interval->run();
-
-        $adminUser = User::create(['ime' => 'admin', 
-                                'prezime' => 'admin', 
-                                'broj_indeksa' => '0000/0000', 
-                                'email' => 'admin@example.com', 
-                                'password' => 'admin',
-                                'administrator' => true,
-                                'grupa_za_nastavu_id' => 1]);
-        $adminUser->save();
-
         $raspored = new RasporedNastaveSeeder();
         $raspored->run();
         $stavka_rasporeda = new StavkaRasporedaSeeder();

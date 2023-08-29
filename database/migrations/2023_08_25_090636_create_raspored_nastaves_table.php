@@ -14,9 +14,9 @@ return new class extends Migration
             $table->date('datum_od');
             $table->date('datum_do');
             $table->unsignedBigInteger('grupa_za_nastavu_id');
-            $table->foreign('grupa_za_nastavu_id')->references('id')->on('grupa_za_nastavus');
+            $table->foreign('grupa_za_nastavu_id')->references('id')->on('grupa_za_nastavus')->onDelete('cascade');
             $table->unsignedBigInteger('korisnik_id');
-            $table->foreign('korisnik_id')->references('id')->on('users');
+            $table->foreign('korisnik_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

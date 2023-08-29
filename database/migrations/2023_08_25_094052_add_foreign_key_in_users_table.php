@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
 
             $table->unsignedBigInteger('grupa_za_nastavu_id')->after('administrator');
-            $table->foreign('grupa_za_nastavu_id')->references('id')->on('grupa_za_nastavus');
+            $table->foreign('grupa_za_nastavu_id')->references('id')->on('grupa_za_nastavus')->onDelete('cascade');
         });
     }
 

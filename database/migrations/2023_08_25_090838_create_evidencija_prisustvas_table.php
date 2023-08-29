@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('evidencija_prisustvas', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->unsignedBigInteger('korisnik_id');
-            $table->foreign('korisnik_id')->references('id')->on('users');
+            $table->foreign('korisnik_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('prisustvo');
             $table->timestamps();
 

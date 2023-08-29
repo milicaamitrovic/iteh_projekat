@@ -136,7 +136,7 @@ class RasporedNastaveController extends Controller
         $raspored = RasporedNastave::where('naziv_rasporeda', $nazivRasporeda)->first();
 
         if ($raspored) {
-            return response()->json($raspored);
+            return new RasporedNastaveResource($raspored);
         } else {
             return response()->json('Raspored sa ovim nazivom ne postoji.');
         }

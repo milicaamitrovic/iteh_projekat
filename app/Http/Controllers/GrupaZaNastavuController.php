@@ -6,6 +6,7 @@ use App\Models\GrupaZaNastavu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GrupaZaNastavuResource;
+use Illuminate\Support\Facades\Validator;
 
 class GrupaZaNastavuController extends Controller
 {

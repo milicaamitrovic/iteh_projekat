@@ -79,7 +79,7 @@ class UserController extends Controller
         $user = User::where('broj_indeksa', $brojIndeksa)->first();
 
         if ($user) {
-            return response()->json($user);
+            return new UserResource($user);
         } else {
             return response()->json('Korisnik sa trazenim brojem indeksa ne postoji.');
         }

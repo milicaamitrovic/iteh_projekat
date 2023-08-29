@@ -7,13 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class GrupaZaNastavuResource extends JsonResource
 {
-    public static $wrap = 'grupa_za_nastavu';
+    public static $wrap = 'Grupa za nastavu';
 
     public function toArray(Request $request): array
     {
         return [
-            'ID' => $this->resource->id,
-            'Naziv grupe' => $this->resource->naziv_grupe,
+            'Naziv' => $this->resource->naziv_grupe,
         ];
     }
 }

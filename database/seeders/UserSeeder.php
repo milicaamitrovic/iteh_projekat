@@ -11,13 +11,17 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        $grupa_admin  = GrupaZaNastavu::where('naziv_grupe', 'admin')->first();
+        $grupa_it = GrupaZaNastavu::where('naziv_grupe', 'IT')->first();
+        $grupa_mgmt = GrupaZaNastavu::where('naziv_grupe', 'MGMT')->first();
+
         $adminUser = User::create(['ime' => 'admin', 
         'prezime' => 'admin', 
         'broj_indeksa' => '0000/0000', 
         'email' => 'admin@example.com', 
         'password' => 'admin',
         'administrator' => true,
-        'grupa_za_nastavu_id' => 1]); 
+        'grupa_za_nastavu_id' => $grupa_admin->id]); 
         $adminUser->save();
 
         $User1 = User::create(['ime' => 'Milica', 
@@ -26,7 +30,7 @@ class UserSeeder extends Seeder
         'email' => 'ms5519@fon.bg.ac.rs', 
         'password' => 'milica5519',
         'administrator' => false,
-        'grupa_za_nastavu_id' => 2]);
+        'grupa_za_nastavu_id' => $grupa_it->id]);
         $User1->save();
 
         $User2 = User::create(['ime' => 'Anja', 
@@ -35,7 +39,7 @@ class UserSeeder extends Seeder
         'email' => 'ac7719@fon.bg.ac.rs', 
         'password' => 'anja7719',
         'administrator' => false,
-        'grupa_za_nastavu_id' => 2]);
+        'grupa_za_nastavu_id' => $grupa_it->id]);
         $User2->save();
 
         $User3 = User::create(['ime' => 'Dusica', 
@@ -44,7 +48,7 @@ class UserSeeder extends Seeder
         'email' => 'ds13719@fon.bg.ac.rs', 
         'password' => 'dusica13719',
         'administrator' => false,
-        'grupa_za_nastavu_id' => 2]);
+        'grupa_za_nastavu_id' => $grupa_it->id]);
         $User3->save();
 
         $User4 = User::create(['ime' => 'Marija', 
@@ -53,7 +57,7 @@ class UserSeeder extends Seeder
         'email' => 'mn20319@fon.bg.ac.rs', 
         'password' => 'marija20319',
         'administrator' => false,
-        'grupa_za_nastavu_id' => 3]);
+        'grupa_za_nastavu_id' => $grupa_mgmt->id]);
         $User4->save();
     }
 }

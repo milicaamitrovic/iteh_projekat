@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('stavka_rasporedas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('raspored_id');
-            $table->foreign('raspored_id')->references('id')->on('raspored_nastaves');
+            $table->foreign('raspored_id')->references('id')->on('raspored_nastaves')->onDelete('cascade');
             $table->unsignedBigInteger('dan_id');
-            $table->foreign('dan_id')->references('id')->on('dans');
+            $table->foreign('dan_id')->references('id')->on('dans')->onDelete('cascade');
             $table->unsignedBigInteger('vremenski_interval_id');
-            $table->foreign('vremenski_interval_id')->references('id')->on('vremenski_intervals');
+            $table->foreign('vremenski_interval_id')->references('id')->on('vremenski_intervals')->onDelete('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('predmet_id');
             $table->foreign('predmet_id')->references('id')->on('predmets');
             $table->timestamps();

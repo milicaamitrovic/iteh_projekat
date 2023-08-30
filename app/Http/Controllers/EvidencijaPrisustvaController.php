@@ -6,6 +6,7 @@ use App\Models\EvidencijaPrisustva;
 use App\Http\Resources\EvidencijaPrisustvaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EvidencijaPrisustvaController extends Controller
 {
@@ -85,5 +86,15 @@ class EvidencijaPrisustvaController extends Controller
     public function destroy(EvidencijaPrisustva $evidencijaPrisustva)
     {
         //
+    }
+
+    public function prikaziStatistiku()
+    {
+        $prisustva_po_danima = EvidencijaPrisustva::selectRaw('DATE(datum) as datum, COUNT(*) as broj_prisustava')->groupByRaw('DATE(datum)')->get();
+
+        $labels = $prisustva_po_danima->pluck('datum');
+        $data = $prisustva_po_danima->pluck('broj_prisustava');
+
+        return view('statistika', compact('labels', 'data')); 
     }
 }

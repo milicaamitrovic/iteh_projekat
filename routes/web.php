@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RasporedNastaveController;
+use App\Http\Controllers\EvidencijaPrisustvaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/raspored-nastave/pdf/{id}', [RasporedNastaveController::class, 'generatePdf'])->name('raspored.pdf');
+Route::get('/statistika-prisustva', [EvidencijaPrisustvaController::class, 'prikaziStatistiku'])->name('evidencija.statistika');

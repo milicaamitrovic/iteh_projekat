@@ -10,10 +10,10 @@ class DanSeeder extends Seeder
 {
     public function run(): void
     {
-        Dan::create(['naziv_dana'=>'ponedeljak']);
-        Dan::create(['naziv_dana'=>'utorak']);
-        Dan::create(['naziv_dana'=>'sreda']);
-        Dan::create(['naziv_dana'=>'cetvrtak']);
-        Dan::create(['naziv_dana'=>'petak']);
+        Dan::create(['naziv_dana'=>'Ponedeljak']);
+        Dan::create(['naziv_dana'=>'Utorak']);
+        Dan::create(['naziv_dana'=>'Sreda']);
+        Dan::create(['naziv_dana'=>'Cetvrtak']);
+        Dan::create(['naziv_dana'=>'Petak']);
     }
 }

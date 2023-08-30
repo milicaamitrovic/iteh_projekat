@@ -9,8 +9,7 @@ class StavkaRasporeda extends Model
 {
 
     use HasFactory;
-    //protected $primaryKey=['id','raspored_id'];
-    //public $incrementing= false;
+
     protected $fillable = [
         'raspored_id',
         'dan_id',
@@ -35,6 +34,6 @@ class StavkaRasporeda extends Model
 
     public function raspored()
     {
-        return $this->belongsTo(RasporedNastave::class);
+        return $this->belongsTo(RasporedNastave::class, 'raspored_id');
     }
 }

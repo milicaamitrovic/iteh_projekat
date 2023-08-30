@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\RasporedNastaveResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class RasporedNastaveController extends Controller
 {
@@ -140,6 +141,22 @@ class RasporedNastaveController extends Controller
         } else {
             return response()->json('Raspored sa ovim nazivom ne postoji.');
         }
+    }
+
+    public function generatePdf($id)
+    {
+        $raspored = RasporedNastave::find($id);
+
+        if (is_null($raspored)) {
+
+            return response()->json('Raspored sa trazenim id-jem ne postoji!');
+        }
+
+        $html = view('raspored_pdf', compact('raspored'));
+        $pdf = PDF::loadHTML($html);
+
+        $pdfFileName = $raspored->naziv_rasporeda . '.pdf';
+        return $pdf->download($pdfFileName);
     }
     
 }

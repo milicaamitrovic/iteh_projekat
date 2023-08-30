@@ -20,7 +20,7 @@ class RasporedNastave extends Model
 
     public function stavkeRasporeda()
     {
-        return $this->hasMany(StavkaRasporeda::class);
+        return $this->hasMany(StavkaRasporeda::class, 'raspored_id');
     }
 
     public function grupaZaNastavu() 

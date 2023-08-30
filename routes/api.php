@@ -11,12 +11,14 @@ use App\Http\Controllers\EvidencijaPrisustvaController;
 use App\Http\Controllers\DanController;
 use App\Http\Controllers\PredmetController;
 use App\Http\Controllers\VremenskiIntervalController;
+use App\Http\Controllers\StavkaRasporedaController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::resource('dan', DanController::class);
 Route::resource('predmet', PredmetController::class);
 Route::resource('vreme', VremenskiIntervalController::class);
+
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){
@@ -40,6 +42,7 @@ Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){
     Route::resource('users', UserController::class);
     Route::resource('grupe', GrupaZaNastavuController::class);
     Route::resource('rasporedi', RasporedNastaveController::class);
+    Route::resource('stavke', StavkaRasporedaController::class);
 
     Route::get('/evidencije', [EvidencijaPrisustvaController::class, 'index']);
     Route::get('/evidencije/{id}', [EvidencijaPrisustvaController::class, 'show']);

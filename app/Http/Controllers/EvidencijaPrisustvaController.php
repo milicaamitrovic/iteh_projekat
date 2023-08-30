@@ -6,6 +6,7 @@ use App\Models\EvidencijaPrisustva;
 use App\Http\Resources\EvidencijaPrisustvaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
 class EvidencijaPrisustvaController extends Controller
@@ -36,6 +37,23 @@ class EvidencijaPrisustvaController extends Controller
 
         if ($evidencija_postoji) {
             return response()->json('Vec ste se evidentirali!');
+        }
+
+        $drzavni_praznici = Http::get('https://date.nager.at/api/v3/PublicHolidays/2023/RS');
+        $data = $drzavni_praznici->json();
+        
+        $datumi_praznika = [];
+        foreach ($data as $praznik) {
+            $datumi_praznika[] = $praznik['date'];
+        }
+
+        if (in_array($request->datum, $datumi_praznika)) {
+            return response()->json('Nažalost, danas je državni praznik i nije moguće evidentirati prisustvo.');
+        }
+
+        $dani = ['Saturday', 'Sunday'];
+        if (in_array(date('l', strtotime($request->datum)), $dani)) {
+            return response()->json('Nažalost, ne možete se evidentirati vikendom.');
         }
 
         $evidencija_prisustva = EvidencijaPrisustva::create([

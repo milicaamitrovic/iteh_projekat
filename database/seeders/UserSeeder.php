@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         $User1 = User::create(['ime' => 'Milica', 
         'prezime' => 'Mitrovic', 
         'broj_indeksa' => '55/2019', 
-        'email' => 'ms5519@fon.bg.ac.rs', 
+        'email' => 'mm5519@fon.bg.ac.rs', 
         'password' => 'milica5519',
         'administrator' => false,
         'grupa_za_nastavu_id' => $grupa_it->id]);

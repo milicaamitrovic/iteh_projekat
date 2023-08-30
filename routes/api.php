@@ -12,13 +12,9 @@ use App\Http\Controllers\DanController;
 use App\Http\Controllers\PredmetController;
 use App\Http\Controllers\VremenskiIntervalController;
 use App\Http\Controllers\StavkaRasporedaController;
+use App\Http\Controllers\DrzavniPrazniciController;
 
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::resource('dan', DanController::class);
-Route::resource('predmet', PredmetController::class);
-Route::resource('vreme', VremenskiIntervalController::class);
-
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){
@@ -26,6 +22,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     });
 
     Route::post('/evidencije', [EvidencijaPrisustvaController::class, 'store']);
+
+    Route::get('/drzavniPraznici', [DrzavniPrazniciController::class, 'vratiDrzavnePraznike']);
 
     Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
 
@@ -39,6 +37,10 @@ Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){
         return response()->json(['message'=>'Administrator je ulogovan.'],200);
     });
 
+    Route::resource('dan', DanController::class);
+    Route::resource('predmet', PredmetController::class);
+    Route::resource('vreme', VremenskiIntervalController::class);
+
     Route::resource('users', UserController::class);
     Route::resource('grupe', GrupaZaNastavuController::class);
     Route::resource('rasporedi', RasporedNastaveController::class);
@@ -49,5 +51,5 @@ Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){
 
     Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
     Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
- 
+
 });

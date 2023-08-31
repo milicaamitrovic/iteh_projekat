@@ -61,6 +61,10 @@ select {
   min-width: unset;
 }
 
+.login-title {
+  margin-bottom: 40px;
+}
+
 .login-forma {
   width: 100%;
   height: 100%;

@@ -6,6 +6,7 @@ import { LoginForma } from "./components/LoginForma";
 import { useState } from "react";
 import { Grupe } from "./components/Grupe";
 import Raspored from "./components/Raspored";
+import Evidencija from "./components/Evidencija";
 
 function App() {
   const [token, setToken] = useState(apiService.getToken());
@@ -37,7 +38,7 @@ function App() {
           ></Route>
           <Route path="/grupe" element={<Grupe />}></Route>
           <Route path="/raspored" element={<Raspored />}></Route>
-          <Route path="/evidencija" element={<h1>evidencija</h1>}></Route>
+          <Route path="/evidencija" element={<Evidencija />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

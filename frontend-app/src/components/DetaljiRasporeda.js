@@ -55,12 +55,15 @@ export default function DetaljiRasporeda(props) {
       {isOpen && (
         <div className="stavke">
           {stavke.length === 0 && <div>Nema dodatih stavki</div>}
-          {stavke.map((stavka) => (
-            <div className="red-stavke-rasporeda">
-              <div className="vreme">{stavka.Vreme}</div>
-              <div>{stavka.Predmet}</div>
-            </div>
-          ))}
+          {stavke
+            .sort((a, b) => a.DanID - b.DanID)
+            .map((stavka) => (
+              <div className="red-stavke-rasporeda">
+                <div className="vreme">{stavka.Dan}</div>
+                <div className="vreme">{stavka.Vreme}</div>
+                <div>{stavka.Predmet}</div>
+              </div>
+            ))}
         </div>
       )}
     </div>

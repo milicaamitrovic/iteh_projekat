@@ -12,6 +12,7 @@
   flex-direction: row;
   border-bottom: 1px solid #ccc;
   align-items: center;
+  min-height: 60px;
 }
 
 .red.header {
@@ -30,17 +31,17 @@
 
 .red .ime,
 .red .naziv {
-  flex: 1 1 140px;
+  flex: 1 1 160px;
 }
 
 .red .broj-indeksa,
 .red .datum-od {
-  flex: 0 0 160px;
+  flex: 0 0 140px;
 }
 
 .red .grupa,
 .datum-do {
-  flex: 0 0 160px;
+  flex: 0 0 140px;
 }
 
 .red .akcije {
@@ -77,7 +78,7 @@
 }
 
 .red-stavke-rasporeda .vreme {
-  min-width: 160px;
+  min-width: 162px;
 }
 
 .admin-buttons {

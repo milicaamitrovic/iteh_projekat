@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EvidencijaPrisustva;
+use App\Models\User;
 use App\Http\Resources\EvidencijaPrisustvaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,9 @@ class EvidencijaPrisustvaController extends Controller
      */
     public function store(Request $request)
     {
-        $evidencija_postoji = EvidencijaPrisustva::where('datum', $request->datum)->where('korisnik_id', Auth::user()->id)->first();
+        $korisnik = User::where('email', $request->email)->first();
+
+        $evidencija_postoji = EvidencijaPrisustva::where('datum', $request->datum)->where('korisnik_id', $korisnik->id)->first();
 
         if ($evidencija_postoji) {
             return response()->json('Vec ste se evidentirali!');
@@ -51,17 +54,17 @@ class EvidencijaPrisustvaController extends Controller
             return response()->json('Nažalost, danas je državni praznik i nije moguće evidentirati prisustvo.');
         }
 
-        $dani = ['Saturday', 'Sunday'];
-        if (in_array(date('l', strtotime($request->datum)), $dani)) {
+        $vikend = ['Saturday', 'Sunday'];
+        if (in_array(date('l', strtotime($request->datum)), $vikend)) {
             return response()->json('Nažalost, ne možete se evidentirati vikendom.');
         }
-
+        
         $evidencija_prisustva = EvidencijaPrisustva::create([
             'datum' => $request->datum,
-            'korisnik_id' => Auth::user()->id
+            'korisnik_id' => $korisnik->id
         ]);
 
-        return response()->json('Evidentirali ste za nastavu dana: ' . $request->datum);
+        return response()->json('Evidentirali ste se za nastavu dana: ' . $request->datum);
     }
 
     /**

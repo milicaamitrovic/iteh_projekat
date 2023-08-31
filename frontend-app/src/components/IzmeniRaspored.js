@@ -33,7 +33,6 @@ export default function IzmeniRaspored(props) {
     }));
   }
 
-  console.log(raspored);
   useEffect(() => {
     apiService
       .getGrupe()

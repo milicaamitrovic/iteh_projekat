@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import apiService from "../apiService";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export function LoginForma(props) {
       .login(email, password)
       .then((response) => {
         setToken(response.data.Token);
-        setLoginInfo(response.data.Uloga, response.data.Ime);
+        setLoginInfo(response.data.Uloga, response.data.Ime, email);
         props.updateToken(response.data.Token);
         navigate("/");
       })
@@ -30,12 +30,16 @@ export function LoginForma(props) {
     apiService.setToken(token);
   }
 
-  function setLoginInfo(uloga, ime) {
-    apiService.setLoginInfo(uloga, ime);
+  function setLoginInfo(uloga, ime, email) {
+    apiService.setLoginInfo(uloga, ime, email);
   }
 
   return (
     <div className="login-forma">
+      <div className="login-title">
+        <h1>Evidencija nastave</h1>
+      </div>
+
       <div className="container">
         <form onSubmit={login}>
           <div className="input-wrapper">

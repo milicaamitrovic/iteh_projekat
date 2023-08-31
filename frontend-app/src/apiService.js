@@ -16,9 +16,10 @@ class ApiService {
     return window.sessionStorage.getItem("token");
   }
 
-  setLoginInfo(uloga, ime) {
+  setLoginInfo(uloga, ime, email) {
     window.sessionStorage.setItem("uloga", uloga);
     window.sessionStorage.setItem("ime", ime);
+    window.sessionStorage.setItem("email", email);
   }
 
   getLoginInfo() {
@@ -26,6 +27,10 @@ class ApiService {
     const ime = window.sessionStorage.getItem("ime");
 
     return { uloga, ime };
+  }
+
+  getEmail() {
+    return window.sessionStorage.getItem("email");
   }
 
   getUsers() {
@@ -121,6 +126,17 @@ class ApiService {
       headers: {
         Authorization: "Bearer " + this.getToken(),
       },
+    });
+  }
+
+  getEvidencije() {
+    return axios.get("http://localhost:8000/api/evidencije");
+  }
+
+  createEvidenciju() {
+    return axios.post(`http://localhost:8000/api/evidencije/`, {
+      datum: new Date().toISOString().slice(0, 19).replace("T", " "),
+      email: this.getEmail(),
     });
   }
 

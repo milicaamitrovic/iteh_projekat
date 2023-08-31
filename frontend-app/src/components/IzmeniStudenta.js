@@ -2,18 +2,33 @@ import { useEffect, useState } from "react";
 import "../IzmeniStudenta.css";
 import apiService from "../apiService";
 
+const noviKorisnik = {
+  ime: "",
+  prezime: "",
+  broj_indeksa: "",
+  email: "",
+  grupa_za_nastavu_id: 1, // admin je default grupa
+  administrator: false,
+  password: "",
+};
+
 export default function IzmeniStudenta(props) {
   const [error, setError] = useState("");
   const [grupe, setGrupe] = useState([]);
-  const [student, setStudent] = useState({
+
+  const editKorisnika = {
     ime: props.student.Ime,
     prezime: props.student.Prezime,
     broj_indeksa: props.student.BrojIndeksa,
     email: props.student.Email,
-    grupa_za_nastavu_id: props.student.GrupaID,
+    grupa_za_nastavu_id: props.student.GrupaId,
     administrator: props.student.Grupa === "admin",
     password: "",
-  });
+  };
+
+  const [student, setStudent] = useState(
+    props.kreirajNovog ? noviKorisnik : editKorisnika
+  );
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,10 +56,15 @@ export default function IzmeniStudenta(props) {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            apiService.updateUser(props.student.ID, student).then(() => {
-              // kad posaljemo true, osvezicemo tabelu na stranici
-              props.closeModal(true);
-            });
+            if (props.kreirajNovog) {
+              apiService.createUser(student).then(() => {
+                props.closeModal(true);
+              });
+            } else {
+              apiService.updateUser(props.student.ID, student).then(() => {
+                props.closeModal(true);
+              });
+            }
           }}
         >
           <div className="input-wrapper">
@@ -97,6 +117,7 @@ export default function IzmeniStudenta(props) {
             <input
               required
               name="email"
+              type="email"
               value={student.email}
               onChange={handleChange}
             />

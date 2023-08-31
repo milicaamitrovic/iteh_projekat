@@ -7,12 +7,19 @@ import IzmeniGrupu from "./IzmeniGrupu";
 export function Grupe() {
   const [grupe, setGrupe] = useState([]);
   const [aktivnaGrupa, setAktivnaGrupa] = useState(null);
+  const korisnik = apiService.getLoginInfo();
 
   useEffect(() => {
     apiService.getGrupe().then((response) => {
       setGrupe(response.data.data);
     });
   }, []);
+
+  function osveziGrupe() {
+    apiService.getGrupe().then((response) => {
+      setGrupe(response.data.data);
+    });
+  }
 
   return (
     <div>
@@ -22,7 +29,13 @@ export function Grupe() {
         <IzmeniGrupu
           id={aktivnaGrupa.ID}
           nazivGrupe={aktivnaGrupa.Naziv}
-          closeModal={() => setAktivnaGrupa(null)}
+          closeModal={(osvezi) => {
+            setAktivnaGrupa(null);
+
+            if (osvezi) {
+              osveziGrupe();
+            }
+          }}
         />
       )}
 
@@ -30,6 +43,7 @@ export function Grupe() {
         {grupe.map((grupa) => (
           <div className="red" key={grupa.Naziv}>
             <div className="naziv-grupe">{grupa.Naziv}</div>
+
             <div className="akcije">
               <button
                 onClick={() => {

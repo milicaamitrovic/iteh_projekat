@@ -16,6 +16,18 @@ class ApiService {
     return window.sessionStorage.getItem("token");
   }
 
+  setLoginInfo(uloga, ime) {
+    window.sessionStorage.setItem("uloga", uloga);
+    window.sessionStorage.setItem("ime", ime);
+  }
+
+  getLoginInfo() {
+    const uloga = window.sessionStorage.getItem("uloga");
+    const ime = window.sessionStorage.getItem("ime");
+
+    return { uloga, ime };
+  }
+
   getUsers() {
     return axios.get("http://localhost:8000/api/users", {
       headers: {
@@ -26,6 +38,10 @@ class ApiService {
 
   updateUser(id, user) {
     return axios.put(`http://localhost:8000/api/users/${id}`, user);
+  }
+
+  createUser(user) {
+    return axios.post(`http://localhost:8000/api/users/`, user);
   }
 
   updateGroup(id, group) {
@@ -49,7 +65,7 @@ class ApiService {
   }
 
   logout() {
-    return window.sessionStorage.removeItem("token");
+    return window.sessionStorage.clear();
   }
 }
 

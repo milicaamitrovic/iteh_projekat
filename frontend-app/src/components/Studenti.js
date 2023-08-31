@@ -7,6 +7,7 @@ import IzmeniStudenta from "./IzmeniStudenta";
 export function Studenti() {
   const [studenti, setStudenti] = useState([]);
   const [student, setStudent] = useState(null);
+  const korisnik = apiService.getLoginInfo();
 
   useEffect(() => {
     apiService.getUsers().then((response) => {
@@ -23,9 +24,15 @@ export function Studenti() {
   return (
     <div>
       <Navigacija />
+      {korisnik.uloga === "administrator" && (
+        <button onClick={() => setStudent({ ime: "" })}>Dodaj studenta</button>
+      )}
 
       {student && (
         <IzmeniStudenta
+          kreirajNovog={
+            korisnik.uloga === "administrator" && student.ime === ""
+          }
           student={student}
           closeModal={(osvezi) => {
             setStudent(null);
@@ -37,7 +44,7 @@ export function Studenti() {
         />
       )}
 
-      <div className="tabela">
+      <div className="container tabela">
         {studenti.map((student) => (
           <div className="red" key={student.ID}>
             <div className="id">{student.ID}</div>

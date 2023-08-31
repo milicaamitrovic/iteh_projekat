@@ -9,6 +9,8 @@ import Raspored from "./components/Raspored";
 
 function App() {
   const [token, setToken] = useState(apiService.getToken());
+  const korisnik = apiService.getLoginInfo();
+  const administrator = korisnik.uloga === "administrator";
 
   return (
     <BrowserRouter>
@@ -17,7 +19,11 @@ function App() {
           <Route
             path="/"
             element={
-              token ? <Navigate to="/studenti" /> : <Navigate to="/login" />
+              token ? (
+                <Navigate to={administrator ? "/studenti" : "/raspored"} />
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           ></Route>
           <Route

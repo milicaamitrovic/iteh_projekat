@@ -17,6 +17,7 @@ export function LoginForma(props) {
       .login(email, password)
       .then((response) => {
         setToken(response.data.Token);
+        setLoginInfo(response.data.Uloga, response.data.Ime);
         props.updateToken(response.data.Token);
         navigate("/");
       })
@@ -27,6 +28,10 @@ export function LoginForma(props) {
 
   function setToken(token) {
     apiService.setToken(token);
+  }
+
+  function setLoginInfo(uloga, ime) {
+    apiService.setLoginInfo(uloga, ime);
   }
 
   return (

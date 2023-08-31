@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 export default function Evidencija() {
   const [evidencije, setEvidencije] = useState([]);
+  const [message, setMessage] = useState("");
+  const korisnik = apiService.getLoginInfo();
 
   function osveziEvidencije() {
     apiService.getEvidencije().then((response) => {
@@ -19,7 +21,8 @@ export default function Evidencija() {
     <div className="container">
       <button
         onClick={() => {
-          apiService.createEvidenciju().then(() => {
+          apiService.createEvidenciju().then((response) => {
+            setMessage(response.data);
             osveziEvidencije();
           });
         }}
@@ -28,21 +31,25 @@ export default function Evidencija() {
       </button>
       <Navigacija />
 
-      <div className="container tabela">
-        <div className="red header">
-          <div className="naziv">Korisnik</div>
-          <div className="datum-od">Datum</div>
-          <div></div>
-        </div>
+      {message && <div className="poruka">{message}</div>}
 
-        {evidencije.map((evidencija) => (
-          <div className="red">
-            <div className="naziv">{evidencija.Korisnik}</div>
-            <div className="datum-od">{evidencija.Datum}</div>
+      {korisnik.uloga === "administrator" && (
+        <div className="container tabela">
+          <div className="red header">
+            <div className="naziv">Korisnik</div>
+            <div className="datum-od">Datum</div>
             <div></div>
           </div>
-        ))}
-      </div>
+
+          {evidencije.map((evidencija) => (
+            <div className="red">
+              <div className="naziv">{evidencija.Korisnik}</div>
+              <div className="datum-od">{evidencija.Datum}</div>
+              <div></div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

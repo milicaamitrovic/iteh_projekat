@@ -58,7 +58,7 @@ export default function DetaljiRasporeda(props) {
           {stavke
             .sort((a, b) => a.DanID - b.DanID)
             .map((stavka) => (
-              <div className="red-stavke-rasporeda">
+              <div key={stavka.ID} className="red-stavke-rasporeda">
                 <div className="vreme">{stavka.Dan}</div>
                 <div className="vreme">{stavka.Vreme}</div>
                 <div>{stavka.Predmet}</div>

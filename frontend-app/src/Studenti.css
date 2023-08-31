@@ -85,3 +85,7 @@
   display: flex;
   gap: 20px;
 }
+
+.poruka {
+  padding: 20px 0;
+}

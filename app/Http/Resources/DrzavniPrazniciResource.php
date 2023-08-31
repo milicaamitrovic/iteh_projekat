@@ -16,7 +16,7 @@ class DrzavniPrazniciResource extends JsonResource
     {
         return [
             'Datum' => $this->resource['date'],
-            'Naziv praznika' => $this->resource['localName'],
+            'NazivPraznika' => $this->resource['localName'],
         ];
     }
 }

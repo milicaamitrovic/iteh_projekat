@@ -17,10 +17,10 @@ class RasporedNastaveResource extends JsonResource
 
         return [
             'ID'  => $this->resource->id,
-            'Naziv rasporeda' => $this->resource->naziv_rasporeda,
-            'Datum od' => $this->resource->datum_od,
-            'Datum do' => $this->resource->datum_do,
-            'Grupa za nastavu' => $grupa->naziv_grupe,
+            'NazivRasporeda' => $this->resource->naziv_rasporeda,
+            'DatumOd' => $this->resource->datum_od,
+            'DatumDo' => $this->resource->datum_do,
+            'GrupaZaNastavu' => $grupa->naziv_grupe,
         ];
     }
 }

@@ -6,7 +6,6 @@ import IzmeniStudenta from "./IzmeniStudenta";
 
 export function Studenti() {
   const [studenti, setStudenti] = useState([]);
-  // trenutno selektovani student
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
@@ -15,19 +14,34 @@ export function Studenti() {
     });
   }, []);
 
+  function osveziStudente() {
+    apiService.getUsers().then((response) => {
+      setStudenti(response.data.data);
+    });
+  }
+
   return (
     <div>
       <Navigacija />
 
       {student && (
-        <IzmeniStudenta student={student} closeModal={() => setStudent(null)} />
+        <IzmeniStudenta
+          student={student}
+          closeModal={(osvezi) => {
+            setStudent(null);
+
+            if (osvezi) {
+              osveziStudente();
+            }
+          }}
+        />
       )}
 
       <div className="tabela">
         {studenti.map((student) => (
           <div className="red" key={student.ID}>
             <div className="id">{student.ID}</div>
-            <div className="ime">{student.Ime}</div>
+            <div className="ime">{student.Ime + " " + student.Prezime}</div>
             <div className="broj-indeksa">{student.BrojIndeksa}</div>
             <div className="grupa">{student.Grupa}</div>
             <div className="akcije">

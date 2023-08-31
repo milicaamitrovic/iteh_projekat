@@ -24,6 +24,30 @@ class ApiService {
     });
   }
 
+  updateUser(id, user) {
+    return axios.put(`http://localhost:8000/api/users/${id}`, user);
+  }
+
+  updateGroup(id, group) {
+    return axios.put(`http://localhost:8000/api/grupe/${id}`, group);
+  }
+
+  getGrupe() {
+    return axios.get("http://localhost:8000/api/grupe", {
+      headers: {
+        Authorization: "Bearer " + this.getToken(),
+      },
+    });
+  }
+
+  getRaspored() {
+    return axios.get("http://localhost:8000/api/rasporedi", {
+      headers: {
+        Authorization: "Bearer " + this.getToken(),
+      },
+    });
+  }
+
   logout() {
     return window.sessionStorage.removeItem("token");
   }

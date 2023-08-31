@@ -5,6 +5,10 @@ body,
   height: 100%;
 }
 
+body {
+  padding-top: 60px;
+}
+
 button {
   padding: 10px 20px;
   background: rebeccapurple;
@@ -19,7 +23,8 @@ button.brisanje {
   background: red;
 }
 
-input {
+input,
+select {
   border: 1px solid rebeccapurple;
   border-radius: 4px;
   height: 40px;
@@ -41,6 +46,18 @@ input {
 .input-wrapper label {
   margin-bottom: 4px;
   font-size: 14px;
+}
+
+.input-wrapper-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-wrapper-checkbox input[type="checkbox"] {
+  display: flex;
+  margin-left: 10px;
+  min-width: unset;
 }
 
 .login-forma {

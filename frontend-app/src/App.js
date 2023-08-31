@@ -4,6 +4,8 @@ import apiService from "./apiService";
 import { Studenti } from "./components/Studenti";
 import { LoginForma } from "./components/LoginForma";
 import { useState } from "react";
+import { Grupe } from "./components/Grupe";
+import Raspored from "./components/Raspored";
 
 function App() {
   const [token, setToken] = useState(apiService.getToken());
@@ -27,8 +29,8 @@ function App() {
             path="/studenti"
             element={token ? <Studenti /> : <Navigate to="/login" />}
           ></Route>
-          <Route path="/grupa" element={<h1>grupa</h1>}></Route>
-          <Route path="/raspored" element={<h1>raspored</h1>}></Route>
+          <Route path="/grupe" element={<Grupe />}></Route>
+          <Route path="/raspored" element={<Raspored />}></Route>
           <Route path="/evidencija" element={<h1>evidencija</h1>}></Route>
         </Routes>
       </div>

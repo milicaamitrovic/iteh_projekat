@@ -1,0 +1,58 @@
+.tabela {
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+.red {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+}
+
+.red:last-child {
+  border-bottom: none;
+}
+
+.red > div {
+  flex: 1;
+  padding: 8px;
+  text-align: left;
+}
+
+.red .id {
+  flex: 0 0 50px;
+}
+
+.red .ime {
+  flex: 1 1 200px;
+}
+
+.red .broj-indeksa {
+  flex: 0 0 140px;
+}
+
+.red .grupa {
+  flex: 0 0 100px;
+}
+
+.red .akcije {
+  flex: 0 0 50px;
+}
+
+.red > div:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1 1 150px;
+}
+
+.akcije button {
+  margin-left: 8px;
+}

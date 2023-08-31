@@ -32,11 +32,24 @@ export default function DetaljiRasporeda(props) {
             <button
               onClick={(event) => {
                 event.stopPropagation();
+                window.open(
+                  `http://localhost:8000/raspored-nastave/pdf/${props.ID}`,
+                  "_blank"
+                );
+              }}
+            >
+              PDF
+            </button>
+
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
                 props.izmeniRaspored();
               }}
             >
               Izmeni
             </button>
+
             <button
               className="brisanje"
               onClick={(event) => {

@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 export function LoginForma(props) {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@example.com");
-  const [password, setPassword] = useState("admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   function login(event) {

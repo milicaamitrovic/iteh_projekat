@@ -11,17 +11,26 @@ export default function IzmeniGrupu(props) {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            apiService
-              .updateGroup(props.id, { naziv_grupe: nazivGrupe })
-              .then(() => {
+
+            if (props.kreirajNovu) {
+              apiService.createGroup({ naziv_grupe: nazivGrupe }).then(() => {
                 // kad posaljemo true, osvezicemo tabelu na stranici
                 props.closeModal(true);
               });
+            } else {
+              apiService
+                .updateGroup(props.id, { naziv_grupe: nazivGrupe })
+                .then(() => {
+                  // kad posaljemo true, osvezicemo tabelu na stranici
+                  props.closeModal(true);
+                });
+            }
           }}
         >
           <div className="input-wrapper">
             <label>Naziv grupe</label>
             <input
+              required
               value={nazivGrupe}
               onInput={(event) => setNazivGrupe(event.target.value)}
             />

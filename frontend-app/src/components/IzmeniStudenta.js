@@ -91,6 +91,7 @@ export default function IzmeniStudenta(props) {
             <label>Broj indeksa</label>
             <input
               required
+              maxLength="9"
               name="broj_indeksa"
               value={student.broj_indeksa}
               onChange={handleChange}

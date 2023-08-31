@@ -18,6 +18,10 @@
   border-bottom: none;
 }
 
+.red.header {
+  font-weight: bold;
+}
+
 .red > div {
   flex: 1;
   padding: 8px;
@@ -29,15 +33,15 @@
 }
 
 .red .ime {
-  flex: 1 1 200px;
+  flex: 1 1 140px;
 }
 
 .red .broj-indeksa {
-  flex: 0 0 140px;
+  flex: 0 0 160px;
 }
 
 .red .grupa {
-  flex: 0 0 100px;
+  flex: 0 0 160px;
 }
 
 .red .akcije {

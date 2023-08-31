@@ -45,9 +45,15 @@ export function Studenti() {
       )}
 
       <div className="container tabela">
+        <div className="red header">
+          <div className="ime">Ime i prezime</div>
+          <div className="broj-indeksa">Broj indeksa</div>
+          <div className="grupa">Grupa</div>
+          <div></div>
+        </div>
+
         {studenti.map((student) => (
           <div className="red" key={student.ID}>
-            <div className="id">{student.ID}</div>
             <div className="ime">{student.Ime + " " + student.Prezime}</div>
             <div className="broj-indeksa">{student.BrojIndeksa}</div>
             <div className="grupa">{student.Grupa}</div>

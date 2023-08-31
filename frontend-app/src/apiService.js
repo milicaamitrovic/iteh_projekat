@@ -44,6 +44,10 @@ class ApiService {
     return axios.post(`http://localhost:8000/api/users/`, user);
   }
 
+  createGroup(group) {
+    return axios.post(`http://localhost:8000/api/grupe/`, group);
+  }
+
   updateGroup(id, group) {
     return axios.put(`http://localhost:8000/api/grupe/${id}`, group);
   }

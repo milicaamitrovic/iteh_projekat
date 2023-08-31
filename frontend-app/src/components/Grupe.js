@@ -8,6 +8,7 @@ export function Grupe() {
   const [grupe, setGrupe] = useState([]);
   const [aktivnaGrupa, setAktivnaGrupa] = useState(null);
   const korisnik = apiService.getLoginInfo();
+  const admininstrator = korisnik.uloga === "administrator";
 
   useEffect(() => {
     apiService.getGrupe().then((response) => {
@@ -24,9 +25,15 @@ export function Grupe() {
   return (
     <div>
       <Navigacija />
+      {admininstrator && (
+        <button onClick={() => setAktivnaGrupa({ Naziv: "" })}>
+          Dodaj grupu
+        </button>
+      )}
 
       {aktivnaGrupa && (
         <IzmeniGrupu
+          kreirajNovu={admininstrator && aktivnaGrupa.Naziv === ""}
           id={aktivnaGrupa.ID}
           nazivGrupe={aktivnaGrupa.Naziv}
           closeModal={(osvezi) => {
@@ -40,6 +47,10 @@ export function Grupe() {
       )}
 
       <div className="tabela">
+        <div className="red header">
+          <div className="naziv-grupe title">Ime grupe</div>
+          <div></div>
+        </div>
         {grupe.map((grupa) => (
           <div className="red" key={grupa.Naziv}>
             <div className="naziv-grupe">{grupa.Naziv}</div>

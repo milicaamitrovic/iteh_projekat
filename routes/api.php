@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::post('/logout', [AuthController::class, 'logout']);   
 });
-
+Route::resource('users', UserController::class);
 
 Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){  
 
@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){
     Route::resource('predmet', PredmetController::class);
     Route::resource('vreme', VremenskiIntervalController::class);
 
-    Route::resource('users', UserController::class);
+    
     Route::resource('grupe', GrupaZaNastavuController::class);
     Route::resource('rasporedi', RasporedNastaveController::class);
     Route::resource('stavke', StavkaRasporedaController::class);

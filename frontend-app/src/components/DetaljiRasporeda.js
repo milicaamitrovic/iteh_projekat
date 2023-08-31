@@ -44,7 +44,7 @@ export default function DetaljiRasporeda(props) {
                 props.obrisiRaspored();
               }}
             >
-              Obrisi
+              Obriši
             </button>
           </div>
         ) : (

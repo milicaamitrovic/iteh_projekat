@@ -85,7 +85,7 @@ export function Grupe() {
                   setModal(true);
                 }}
               >
-                obriši
+                Obriši
               </button>
             </div>
           </div>

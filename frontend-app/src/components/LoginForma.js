@@ -68,7 +68,7 @@ export function LoginForma(props) {
 
           <button type="submit">uloguj se</button>
 
-          <div>{error}</div>
+          <div className="poruka">{error}</div>
         </form>
       </div>
     </div>

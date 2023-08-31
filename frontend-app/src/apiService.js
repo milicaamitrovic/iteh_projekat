@@ -140,6 +140,10 @@ class ApiService {
     });
   }
 
+  getDrzavniPraznici() {
+    return axios.get("http://localhost:8000/api/drzavniPraznici");
+  }
+
   logout() {
     return window.sessionStorage.clear();
   }

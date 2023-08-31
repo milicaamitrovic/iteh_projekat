@@ -81,7 +81,7 @@ export function Studenti() {
                   setModal(true);
                 }}
               >
-                obriši
+                Obriši
               </button>
             </div>
           </div>

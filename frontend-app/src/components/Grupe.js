@@ -3,10 +3,13 @@ import apiService from "../apiService";
 import "../Studenti.css";
 import Navigacija from "./Navigacija";
 import IzmeniGrupu from "./IzmeniGrupu";
+import PotvrdiBrisanje from "./PotvrdiBrisanje";
 
 export function Grupe() {
   const [grupe, setGrupe] = useState([]);
   const [aktivnaGrupa, setAktivnaGrupa] = useState(null);
+  const [grupaId, setGrupaId] = useState(null);
+  const [modal, setModal] = useState(null);
   const korisnik = apiService.getLoginInfo();
   const admininstrator = korisnik.uloga === "administrator";
 
@@ -46,25 +49,44 @@ export function Grupe() {
         />
       )}
 
+      {modal && (
+        <PotvrdiBrisanje
+          potvrdi={() => {
+            apiService.deleteGroup(grupaId).then(() => {
+              osveziGrupe();
+              setModal(false);
+            });
+          }}
+          odustani={() => setModal(false)}
+        />
+      )}
+
       <div className="tabela">
         <div className="red header">
           <div className="naziv-grupe title">Ime grupe</div>
           <div></div>
         </div>
         {grupe.map((grupa) => (
-          <div className="red" key={grupa.Naziv}>
+          <div className="red" key={grupa.ID}>
             <div className="naziv-grupe">{grupa.Naziv}</div>
 
             <div className="akcije">
               <button
                 onClick={() => {
                   setAktivnaGrupa(grupa);
-                  console.log(grupa);
                 }}
               >
                 izmeni
               </button>
-              <button className="brisanje">obriši</button>
+              <button
+                className="brisanje"
+                onClick={() => {
+                  setGrupaId(grupa.ID);
+                  setModal(true);
+                }}
+              >
+                obriši
+              </button>
             </div>
           </div>
         ))}

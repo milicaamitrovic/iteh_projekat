@@ -4,11 +4,14 @@ import apiService from "../apiService";
 import DetaljiRasporeda from "./DetaljiRasporeda";
 import IzmeniRaspored from "./IzmeniRaspored";
 import DodajStavkuRasporeda from "./DodajStavkuRasporeda";
+import PotvrdiBrisanje from "./PotvrdiBrisanje";
 
 export default function Raspored() {
   const [rasporedi, setRasporedi] = useState([]);
   const [raspored, setRaspored] = useState(null);
+  const [rasporedId, setRasporedId] = useState(null);
   const [stavka, setStavka] = useState(false);
+  const [modal, setModal] = useState(null);
 
   const korisnik = apiService.getLoginInfo();
   const administrator = korisnik.uloga === "administrator";
@@ -69,6 +72,18 @@ export default function Raspored() {
         />
       )}
 
+      {modal && (
+        <PotvrdiBrisanje
+          potvrdi={() => {
+            apiService.deleteRaspored(rasporedId).then(() => {
+              osveziRaspored();
+              setModal(false);
+            });
+          }}
+          odustani={() => setModal(false)}
+        />
+      )}
+
       <div className="container tabela">
         <div className="red header">
           <div className="naziv">Naziv rasporeda</div>
@@ -82,8 +97,11 @@ export default function Raspored() {
             {...raspored}
             key={raspored.ID}
             izmeniRaspored={() => {
-              console.log(raspored);
               setRaspored(raspored);
+            }}
+            obrisiRaspored={() => {
+              setRasporedId(raspored.ID);
+              setModal(true);
             }}
           />
         ))}

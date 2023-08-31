@@ -3,10 +3,13 @@ import apiService from "../apiService";
 import "../Studenti.css";
 import Navigacija from "./Navigacija";
 import IzmeniStudenta from "./IzmeniStudenta";
+import PotvrdiBrisanje from "./PotvrdiBrisanje";
 
 export function Studenti() {
   const [studenti, setStudenti] = useState([]);
   const [student, setStudent] = useState(null);
+  const [studentId, setStudentId] = useState(null);
+  const [modal, setModal] = useState(null);
   const korisnik = apiService.getLoginInfo();
 
   useEffect(() => {
@@ -44,6 +47,18 @@ export function Studenti() {
         />
       )}
 
+      {modal && (
+        <PotvrdiBrisanje
+          potvrdi={() => {
+            apiService.deleteUser(studentId).then(() => {
+              osveziStudente();
+              setModal(false);
+            });
+          }}
+          odustani={() => setModal(false)}
+        />
+      )}
+
       <div className="container tabela">
         <div className="red header">
           <div className="ime">Ime i prezime</div>
@@ -59,7 +74,15 @@ export function Studenti() {
             <div className="grupa">{student.Grupa}</div>
             <div className="akcije">
               <button onClick={() => setStudent(student)}>izmeni</button>
-              <button className="brisanje">obriši</button>
+              <button
+                className="brisanje"
+                onClick={() => {
+                  setStudentId(student.ID);
+                  setModal(true);
+                }}
+              >
+                obriši
+              </button>
             </div>
           </div>
         ))}

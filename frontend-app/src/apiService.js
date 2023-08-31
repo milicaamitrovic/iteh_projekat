@@ -36,6 +36,10 @@ class ApiService {
     });
   }
 
+  deleteUser(id) {
+    return axios.delete(`http://localhost:8000/api/users/${id}`);
+  }
+
   updateUser(id, user) {
     return axios.put(`http://localhost:8000/api/users/${id}`, user);
   }
@@ -52,6 +56,10 @@ class ApiService {
     return axios.put(`http://localhost:8000/api/grupe/${id}`, group);
   }
 
+  deleteGroup(id) {
+    return axios.delete(`http://localhost:8000/api/grupe/${id}`);
+  }
+
   getGrupe() {
     return axios.get("http://localhost:8000/api/grupe", {
       headers: {
@@ -66,6 +74,10 @@ class ApiService {
         Authorization: "Bearer " + this.getToken(),
       },
     });
+  }
+
+  deleteRaspored(id) {
+    return axios.delete(`http://localhost:8000/api/rasporedi/${id}`);
   }
 
   getPredmeti() {

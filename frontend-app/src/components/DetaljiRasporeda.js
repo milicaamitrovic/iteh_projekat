@@ -37,7 +37,15 @@ export default function DetaljiRasporeda(props) {
             >
               Izmeni
             </button>
-            <button onClick={() => props.obrisiRaspored()}>Obrisi</button>
+            <button
+              className="brisanje"
+              onClick={(event) => {
+                event.stopPropagation();
+                props.obrisiRaspored();
+              }}
+            >
+              Obrisi
+            </button>
           </div>
         ) : (
           <div></div>

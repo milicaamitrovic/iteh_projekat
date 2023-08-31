@@ -9,12 +9,14 @@ export function Studenti() {
   const [studenti, setStudenti] = useState([]);
   const [student, setStudent] = useState(null);
   const [studentId, setStudentId] = useState(null);
+  const [brojIndexa, setBrojIndexa] = useState("");
   const [modal, setModal] = useState(null);
   const korisnik = apiService.getLoginInfo();
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     apiService.getUsers().then((response) => {
-      setStudenti(response.data.data);
+      setStudenti(response.data.data || []);
     });
   }, []);
 
@@ -24,12 +26,45 @@ export function Studenti() {
     });
   }
 
+  function sortiraj(event) {
+    setIsChecked(event.target.checked);
+
+    if (event.target.checked) {
+      setStudenti([...studenti].sort((a, b) => a.Ime.localeCompare(b.Ime)));
+    } else {
+      osveziStudente();
+    }
+  }
+
+  const fliltriraniStudenti = studenti.filter((student) =>
+    student.BrojIndeksa.includes(brojIndexa)
+  );
+
   return (
     <div className="container">
       <Navigacija />
-      {korisnik.uloga === "administrator" && (
-        <button onClick={() => setStudent({ ime: "" })}>Dodaj studenta</button>
-      )}
+      <div className="sort-by-name">
+        <div>
+          {korisnik.uloga === "administrator" && (
+            <button onClick={() => setStudent({ ime: "" })}>
+              Dodaj studenta
+            </button>
+          )}
+        </div>
+
+        <div>
+          <input
+            type="search"
+            placeholder="Pretrazi po broju indexa"
+            onInput={(event) => setBrojIndexa(event.target.value)}
+          />
+        </div>
+
+        <label>
+          <input type="checkbox" checked={isChecked} onChange={sortiraj} />
+          <span>Sortiraj po imenu</span>
+        </label>
+      </div>
 
       {student && (
         <IzmeniStudenta
@@ -67,7 +102,7 @@ export function Studenti() {
           <div></div>
         </div>
 
-        {studenti.map((student) => (
+        {fliltriraniStudenti.map((student) => (
           <div className="red" key={student.ID}>
             <div className="ime">{student.Ime + " " + student.Prezime}</div>
             <div className="broj-indeksa">{student.BrojIndeksa}</div>

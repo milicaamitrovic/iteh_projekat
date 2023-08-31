@@ -68,12 +68,40 @@ class ApiService {
     });
   }
 
+  getPredmeti() {
+    return axios.get("http://localhost:8000/api/predmet", {
+      headers: {
+        Authorization: "Bearer " + this.getToken(),
+      },
+    });
+  }
+
+  getDani() {
+    return axios.get("http://localhost:8000/api/dan", {
+      headers: {
+        Authorization: "Bearer " + this.getToken(),
+      },
+    });
+  }
+
+  getVreme() {
+    return axios.get("http://localhost:8000/api/vreme", {
+      headers: {
+        Authorization: "Bearer " + this.getToken(),
+      },
+    });
+  }
+
   updateRaspored(id, raspored) {
     return axios.put(`http://localhost:8000/api/rasporedi/${id}`, raspored);
   }
 
   createRaspored(raspored) {
     return axios.post(`http://localhost:8000/api/rasporedi/`, raspored);
+  }
+
+  createStavku(stavka) {
+    return axios.post(`http://localhost:8000/api/stavke/`, stavka);
   }
 
   getStavkeRasporeda(id) {

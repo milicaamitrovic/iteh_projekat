@@ -15,7 +15,8 @@ class DanResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Dan' => $this->resource->naziv_dana
+            'Dan' => $this->resource->naziv_dana,
+            'DanID' => $this->resource->id,
         ];
     }
 }

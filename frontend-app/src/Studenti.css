@@ -80,6 +80,7 @@
   min-width: 160px;
 }
 
-.datum-do {
-
+.admin-buttons {
+  display: flex;
+  gap: 20px;
 }

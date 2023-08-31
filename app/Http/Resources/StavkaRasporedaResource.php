@@ -25,10 +25,14 @@ class StavkaRasporedaResource extends JsonResource
         $predmet = Predmet::find($this->resource->predmet_id);
         return [
             'ID' => $this->resource->id,
-            'RasporedNastave'  =>$raspored->naziv_rasporeda,
+            'RasporedNastave' => $raspored->naziv_rasporeda,
+            'RasporedNastaveID' => $raspored->id,
             'Dan' => $dan->naziv_dana,
+            'DanID' => $dan->id,
             'Vreme' => $vreme->interval,
+            'VremeID' => $vreme->id,
             'Predmet' => $predmet->naziv_predmeta,
+            'PredmetID' => $predmet->id,
         ];
             
     }

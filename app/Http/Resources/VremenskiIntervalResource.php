@@ -15,7 +15,8 @@ class VremenskiIntervalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Vreme' => $this->resource->interval
+            'Vreme' => $this->resource->interval,
+            'VremeID' => $this->resource->id,
         ];
     }
 }

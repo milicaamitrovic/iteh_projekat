@@ -23,7 +23,7 @@ export function Grupe() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Navigacija />
       {admininstrator && (
         <button onClick={() => setAktivnaGrupa({ Naziv: "" })}>

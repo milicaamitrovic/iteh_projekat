@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RasporedNastave;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\RasporedNastaveResource;
@@ -45,12 +46,14 @@ class RasporedNastaveController extends Controller
             return response()->json(['Greska pri validaciji!', $validator->errors()]);
         }
 
+        $adminUser = User::where('ime', 'admin')->first();
+
         $rasporedNastave = RasporedNastave::create([
             'naziv_rasporeda' => $request->naziv_rasporeda,
             'datum_od' => $request->datum_od,
             'datum_do' => $request->datum_do,
             'grupa_za_nastavu_id' => $request->grupa_za_nastavu_id,
-            'korisnik_id' => Auth::user()->id
+            'korisnik_id' => $adminUser->id,
         ]);
 
         return response()->json(['Raspored nastave je dodat!', new RasporedNastaveResource($rasporedNastave)]);

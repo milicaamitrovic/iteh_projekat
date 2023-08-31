@@ -22,7 +22,7 @@ export function Studenti() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Navigacija />
       {korisnik.uloga === "administrator" && (
         <button onClick={() => setStudent({ ime: "" })}>Dodaj studenta</button>

@@ -21,6 +21,7 @@ class RasporedNastaveResource extends JsonResource
             'DatumOd' => $this->resource->datum_od,
             'DatumDo' => $this->resource->datum_do,
             'GrupaZaNastavu' => $grupa->naziv_grupe,
+            'GrupaZaNastavuID' => $grupa->id,
         ];
     }
 }

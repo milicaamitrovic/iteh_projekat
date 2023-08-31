@@ -14,10 +14,6 @@
   align-items: center;
 }
 
-.red:last-child {
-  border-bottom: none;
-}
-
 .red.header {
   font-weight: bold;
 }
@@ -32,15 +28,18 @@
   flex: 0 0 50px;
 }
 
-.red .ime {
+.red .ime,
+.red .naziv {
   flex: 1 1 140px;
 }
 
-.red .broj-indeksa {
+.red .broj-indeksa,
+.red .datum-od {
   flex: 0 0 160px;
 }
 
-.red .grupa {
+.red .grupa,
+.datum-do {
   flex: 0 0 160px;
 }
 
@@ -58,4 +57,29 @@
 
 .akcije button {
   margin-left: 8px;
+}
+
+.red.raspored:hover {
+  background: ghostwhite;
+  cursor: pointer;
+}
+
+.stavke {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+}
+
+.red-stavke-rasporeda {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.red-stavke-rasporeda .vreme {
+  min-width: 160px;
+}
+
+.datum-do {
+
 }

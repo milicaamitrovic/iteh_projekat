@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 Route::resource('users', UserController::class);
 Route::resource('grupe', GrupaZaNastavuController::class);
+Route::resource('rasporedi', RasporedNastaveController::class);
 Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){  
 
     Route::get('/check', function(){
@@ -43,7 +44,7 @@ Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){
 
     
     
-    Route::resource('rasporedi', RasporedNastaveController::class);
+    
     Route::resource('stavke', StavkaRasporedaController::class);
 
     Route::get('/evidencije', [EvidencijaPrisustvaController::class, 'index']);

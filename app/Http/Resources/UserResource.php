@@ -17,7 +17,7 @@ class UserResource extends JsonResource
             'ID' => $this->resource->id,
             'Ime'=> $this->resource->ime,
             'Prezime' => $this->resource->prezime,
-            'Broj indeksa' => $this->resource->broj_indeksa,
+            'BrojIndeksa' => $this->resource->broj_indeksa,
             'Email' => $this->resource->email,
             'Grupa' => $grupa->naziv_grupe,
         ];

@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'BrojIndeksa' => $this->resource->broj_indeksa,
             'Email' => $this->resource->email,
             'Grupa' => $grupa->naziv_grupe,
+            'GrupaId' => $grupa->id,
         ];
     }
 }

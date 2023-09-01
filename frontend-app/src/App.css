@@ -83,3 +83,14 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
 }
+
+
+.footer {
+    background-color: black;
+    color:white;
+    padding:10px;
+    text-align: center;
+    position:relative;
+    width: 100%;
+    bottom: 0px;;
+}

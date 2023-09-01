@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Grupe } from "./components/Grupe";
 import Raspored from "./components/Raspored";
 import Evidencija from "./components/Evidencija";
+import Footer from './components/Footer';
 
 function App() {
   const [token, setToken] = useState(apiService.getToken());
@@ -41,6 +42,7 @@ function App() {
           <Route path="/evidencija" element={<Evidencija />}></Route>
         </Routes>
       </div>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }

@@ -27,9 +27,7 @@ export default function DetaljiRasporeda(props) {
         <div className="datum-od">{props.DatumOd}</div>
         <div className="datum-do">{props.DatumDo}</div>
 
-        {administrator ? (
-          <div className="akcije">
-            <button
+        <button
               onClick={(event) => {
                 event.stopPropagation();
                 window.open(
@@ -40,6 +38,11 @@ export default function DetaljiRasporeda(props) {
             >
               PDF
             </button>
+
+
+        {administrator ? (
+          <div className="akcije">
+            
 
             <button
               onClick={(event) => {

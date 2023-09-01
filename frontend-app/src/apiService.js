@@ -135,7 +135,7 @@ class ApiService {
 
   createEvidenciju() {
     return axios.post(`http://localhost:8000/api/evidencije/`, {
-      datum: new Date().toISOString().slice(0, 19).replace("T", " "),
+      datum: new Date().toISOString().slice(0, 10),
       email: this.getEmail(),
     });
   }

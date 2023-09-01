@@ -2,11 +2,13 @@ import Navigacija from "./Navigacija";
 import apiService from "../apiService";
 import { useEffect, useState } from "react";
 
+
 export default function Evidencija() {
   const [evidencije, setEvidencije] = useState([]);
   const [praznici, setPraznici] = useState([]);
   const [message, setMessage] = useState("");
   const korisnik = apiService.getLoginInfo();
+  const administrator = korisnik.uloga === "administrator";
 
   function osveziEvidencije() {
     apiService.getEvidencije().then((response) => {
@@ -23,19 +25,23 @@ export default function Evidencija() {
       <Navigacija />
 
       <div className="admin-buttons">
-        <button
-          onClick={() => {
-            apiService.createEvidenciju().then((response) => {
-              setMessage(response.data);
-              setPraznici([]);
-              osveziEvidencije();
-            });
-          }}
-        >
-          Potvrdi evidenciju
-        </button>
 
-        <button
+         {  
+             administrator? (
+              <div></div>
+        )
+      : ( <div className="admin-buttons"><button
+        onClick={() => {
+          apiService.createEvidenciju().then((response) => {
+            setMessage(response.data);
+            setPraznici([]);
+            osveziEvidencije();
+          });
+        }}
+      >
+        Potvrdi evidenciju
+      </button> 
+      <button
           onClick={() => {
             apiService.getDrzavniPraznici().then((response) => {
               setMessage("");
@@ -45,6 +51,15 @@ export default function Evidencija() {
         >
           Drzavni praznici
         </button>
+        </div>
+
+
+     )
+
+        }
+
+
+        
 
         {korisnik.uloga === "administrator" && (
           <button

@@ -92,11 +92,12 @@ input[type="checkbox"] {
 }
 
 .footer {
+    height: 40x;
     background-color: black;
     color: white;
     padding: 10px;
     text-align: center;
-    position: relative;
+    position:-ms-page;
     width: 100%;
     bottom: 0px;
 }

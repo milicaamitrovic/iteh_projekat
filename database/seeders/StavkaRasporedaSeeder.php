@@ -14,7 +14,7 @@ class StavkaRasporedaSeeder extends Seeder
 {
     public function run(): void
     {
-        $raspored_it = RasporedNastave::where('naziv_rasporeda', 'Raspored za IT grupu')->first();
+        $raspored_it = RasporedNastave::where('naziv_rasporeda', 'Raspored za ISIT grupu')->first();
         $raspored_mgmt = RasporedNastave::where('naziv_rasporeda', 'Raspored za MGMT grupu')->first();
         
         $ponedeljak = Dan::where('naziv_dana', 'ponedeljak')->first();

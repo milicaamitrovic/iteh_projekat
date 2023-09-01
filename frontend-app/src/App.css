@@ -84,13 +84,19 @@ input[type="checkbox"] {
     flex-direction: column;
 }
 
+.logo {
+    width: 150px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+}
 
 .footer {
     background-color: black;
-    color:white;
-    padding:10px;
+    color: white;
+    padding: 10px;
     text-align: center;
-    position:relative;
+    position: relative;
     width: 100%;
-    bottom: 0px;;
+    bottom: 0px;
 }

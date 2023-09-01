@@ -3,10 +3,10 @@ import apiService from "../apiService";
 import { useNavigate } from "react-router-dom";
 
 export function LoginForma(props) {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     function login(event) {
         setError("");
@@ -37,6 +37,7 @@ export function LoginForma(props) {
     return (
         <div className="login-forma">
             <div className="login-title">
+                <img src="/pngwing.com.png" alt="Logo" className="logo" />
                 <h1>Evidencija prisustva nastavi</h1>
             </div>
 

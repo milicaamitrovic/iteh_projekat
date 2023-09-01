@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\User;
+use Carbon\Carbon;
 
 class EvidencijaPrisustvaResource extends JsonResource
 {
@@ -18,7 +19,7 @@ class EvidencijaPrisustvaResource extends JsonResource
         $user = User::find($this->resource->korisnik_id);
 
         return [
-            'Datum' => $this->resource->datum,
+            'Datum' => Carbon::parse($this->resource->datum)->format('d.m.Y.'),
             'Korisnik' => $user->ime . ' ' . $user->prezime
         ];
     }

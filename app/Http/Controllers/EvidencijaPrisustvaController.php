@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class EvidencijaPrisustvaController extends Controller
 {
@@ -64,7 +65,9 @@ class EvidencijaPrisustvaController extends Controller
             'korisnik_id' => $korisnik->id
         ]);
 
-        return response()->json('Evidentirali ste se za nastavu dana: ' . $request->datum);
+        $formatiran_datum = Carbon::parse($request->datum)->format('d.m.Y.');
+
+        return response()->json('Evidentirali ste se za nastavu dana: ' . $formatiran_datum);
     }
 
     /**

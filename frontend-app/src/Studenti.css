@@ -1,104 +1,104 @@
 .tabela {
-  display: flex;
-  flex-direction: column;
-  border-collapse: collapse;
-  width: 100%;
-  margin: 0 auto;
-  padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 0;
 }
 
 .red {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid #ccc;
-  align-items: center;
-  min-height: 60px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    min-height: 60px;
 }
 
 .red.header {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .red > div {
-  flex: 1;
-  padding: 8px;
-  text-align: left;
+    flex: 1;
+    padding: 8px;
+    text-align: left;
 }
 
 .red .id {
-  flex: 0 0 50px;
+    flex: 0 0 50px;
 }
 
 .red .ime,
 .red .naziv {
-  flex: 1 1 160px;
+    flex: 1 1 160px;
 }
 
 .red .broj-indeksa,
 .red .datum-od {
-  flex: 0 0 140px;
+    flex: 0 0 140px;
 }
 
 .red .grupa,
 .datum-do {
-  flex: 0 0 140px;
+    flex: 0 0 160px;
 }
 
 .red .akcije {
-  flex: 0 0 50px;
+    flex: 0 0 50px;
 }
 
 .red > div:last-child {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 1 1 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1 1 150px;
 }
 
 .akcije button {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 .red.raspored:hover {
-  background: ghostwhite;
-  cursor: pointer;
+    background: ghostwhite;
+    cursor: pointer;
 }
 
 .stavke {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
 }
 
 .red-stavke-rasporeda {
-  display: flex;
-  margin-bottom: 5px;
+    display: flex;
+    margin-bottom: 5px;
 }
 
 .red-stavke-rasporeda .vreme {
-  min-width: 162px;
+    min-width: 162px;
 }
 
 .admin-buttons {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .poruka {
-  padding: 20px 0;
+    padding: 20px 0;
 }
 
 .sort-by-name {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
 }
 
 .sort-by-name label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }

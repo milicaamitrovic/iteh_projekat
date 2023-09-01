@@ -2,84 +2,84 @@ html,
 body,
 #root,
 .app {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  padding-top: 60px;
+    padding-top: 60px;
 }
 
 button {
-  padding: 10px 20px;
-  background: rebeccapurple;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  height: 40px;
+    padding: 10px 20px;
+    background: rebeccapurple;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 40px;
 }
 
 button.brisanje {
-  background: red;
+    background: red;
 }
 
 input,
 select {
-  border: 1px solid rebeccapurple;
-  border-radius: 4px;
-  height: 40px;
-  padding: 4px;
-  min-width: 400px;
+    border: 1px solid rebeccapurple;
+    border-radius: 4px;
+    height: 40px;
+    padding: 4px;
+    min-width: 400px;
 }
 
 input[type="checkbox"] {
-  min-width: unset;
+    min-width: unset;
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .input-wrapper label {
-  margin-bottom: 4px;
-  font-size: 14px;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 
 .input-wrapper-checkbox {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .input-wrapper-checkbox input[type="checkbox"] {
-  display: flex;
-  margin-left: 10px;
-  min-width: unset;
+    display: flex;
+    margin-left: 10px;
+    min-width: unset;
 }
 
 .login-title {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .login-forma {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .login-forma .input-wrapper {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }

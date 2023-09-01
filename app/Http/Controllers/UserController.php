@@ -72,20 +72,6 @@ class UserController extends Controller
         }
     }
 
-    public function searchByBrojIndeksa(Request $request)
-    {
-        $brojIndeksa = $request->input('broj_indeksa');
-
-        $user = User::where('broj_indeksa', $brojIndeksa)->first();
-
-        if ($user) {
-            return new UserResource($user);
-        } else {
-            return response()->json('Korisnik sa trazenim brojem indeksa ne postoji.');
-        }
-    }
-
-
     /**
      * Show the form for editing the specified resource.
      */

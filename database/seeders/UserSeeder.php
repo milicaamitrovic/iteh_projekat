@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $grupa_admin  = GrupaZaNastavu::where('naziv_grupe', 'admin')->first();
-        $grupa_it = GrupaZaNastavu::where('naziv_grupe', 'IT')->first();
+        $grupa_it = GrupaZaNastavu::where('naziv_grupe', 'ISIT')->first();
         $grupa_mgmt = GrupaZaNastavu::where('naziv_grupe', 'MGMT')->first();
 
         $adminUser = User::create(['ime' => 'admin', 
@@ -59,5 +59,14 @@ class UserSeeder extends Seeder
         'administrator' => false,
         'grupa_za_nastavu_id' => $grupa_mgmt->id]);
         $User4->save();
+
+        $User5 = User::create(['ime' => 'Uros', 
+        'prezime' => 'Beric', 
+        'broj_indeksa' => '197/2019', 
+        'email' => 'ub19719@fon.bg.ac.rs', 
+        'password' => 'uros19719',
+        'administrator' => false,
+        'grupa_za_nastavu_id' => $grupa_mgmt->id]);
+        $User5->save();
     }
 }

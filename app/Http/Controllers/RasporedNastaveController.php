@@ -133,19 +133,6 @@ class RasporedNastaveController extends Controller
         } 
     }
 
-    public function searchByNazivRasporeda(Request $request)
-    {
-        $nazivRasporeda = $request->input('naziv_rasporeda');
-
-        $raspored = RasporedNastave::where('naziv_rasporeda', $nazivRasporeda)->first();
-
-        if ($raspored) {
-            return new RasporedNastaveResource($raspored);
-        } else {
-            return response()->json('Raspored sa ovim nazivom ne postoji.');
-        }
-    }
-
     public function generatePdf($id)
     {
         $raspored = RasporedNastave::find($id);

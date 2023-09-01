@@ -16,6 +16,21 @@ use App\Http\Controllers\DrzavniPrazniciController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::resource('users', UserController::class);
+Route::resource('grupe', GrupaZaNastavuController::class);
+Route::resource('rasporedi', RasporedNastaveController::class);
+
+Route::resource('dan', DanController::class);
+Route::resource('predmet', PredmetController::class);
+Route::resource('vreme', VremenskiIntervalController::class);
+Route::resource('stavke', StavkaRasporedaController::class);
+Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
+
+Route::get('/evidencije', [EvidencijaPrisustvaController::class, 'index']);
+Route::get('/evidencije/{id}', [EvidencijaPrisustvaController::class, 'show']);
+Route::post('/evidencije', [EvidencijaPrisustvaController::class, 'store']);
+Route::get('/drzavniPraznici', [DrzavniPrazniciController::class, 'vratiDrzavnePraznike']);
+
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/profile', function(Request $request){
         return auth()->user();
@@ -23,28 +38,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     
     Route::post('/logout', [AuthController::class, 'logout']);   
 });
-
-    Route::post('/evidencije', [EvidencijaPrisustvaController::class, 'store']);
-
-    Route::get('/drzavniPraznici', [DrzavniPrazniciController::class, 'vratiDrzavnePraznike']);
-
-    Route::get('/stavkeRasporeda/{id}', [RasporedStavkeRasporedaController::class, 'index']);
-
-    Route::resource('users', UserController::class);
-    Route::resource('grupe', GrupaZaNastavuController::class);
-    Route::resource('rasporedi', RasporedNastaveController::class);
-
-    Route::resource('dan', DanController::class);
-    Route::resource('predmet', PredmetController::class);
-    Route::resource('vreme', VremenskiIntervalController::class);
-
-    Route::resource('stavke', StavkaRasporedaController::class);
-
-    Route::get('/evidencije', [EvidencijaPrisustvaController::class, 'index']);
-    Route::get('/evidencije/{id}', [EvidencijaPrisustvaController::class, 'show']);
-    Route::get('/user/search', [UserController::class, 'searchByBrojIndeksa'])->name('user.search');
-    Route::get('/raspored/search', [RasporedNastaveController::class, 'searchByNazivRasporeda'])->name('raspored.search');
-
 
 Route::middleware(['auth:sanctum','daLiJeAdministrator'])->group(function(){  
 

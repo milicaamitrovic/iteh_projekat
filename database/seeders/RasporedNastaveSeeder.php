@@ -13,14 +13,14 @@ class RasporedNastaveSeeder extends Seeder
 {
     public function run(): void
     {
-        $grupa_it = GrupaZaNastavu::where('naziv_grupe', 'IT')->first();
+        $grupa_it = GrupaZaNastavu::where('naziv_grupe', 'ISIT')->first();
         $grupa_mgmt = GrupaZaNastavu::where('naziv_grupe', 'MGMT')->first();
         $korisnik = User::where('ime', 'admin')->where('administrator', true)->first();
 
         if ($grupa_it && $korisnik) {
             RasporedNastave::create([
                 //'id' => 1,
-                'naziv_rasporeda' => 'Raspored za IT grupu',
+                'naziv_rasporeda' => 'Raspored za ISIT grupu',
                 'datum_od' => Carbon::parse('2022-10-01')->startOfDay(),
                 'datum_do' => Carbon::parse('2023-01-01')->startOfDay(),
                 'grupa_za_nastavu_id' => $grupa_it->id,

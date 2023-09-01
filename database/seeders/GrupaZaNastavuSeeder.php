@@ -15,7 +15,7 @@ class GrupaZaNastavuSeeder extends Seeder
         ]);
 
         GrupaZaNastavu::create([
-            'naziv_grupe' => 'IT',
+            'naziv_grupe' => 'ISIT',
         ]);
 
         GrupaZaNastavu::create([
